@@ -8,25 +8,38 @@ import Image from 'next/image';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
   
   useEffect(() => {
+    // Set window size once the component is mounted
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+    
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+    
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize);
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
   
   const calculateRotation = (x, y) => {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    
-    const rotateX = (y - windowHeight / 2) / 50;
-    const rotateY = -(x - windowWidth / 2) / 50;
+    const rotateX = (y - windowSize.height / 2) / 50;
+    const rotateY = -(x - windowSize.width / 2) / 50;
     
     return { x: rotateX, y: rotateY };
   };
@@ -58,32 +71,51 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, [index, reverse, text, fullText]);
   
+  // Random positions for background elements
+  const [randomPositions, setRandomPositions] = useState([]);
+  
+  useEffect(() => {
+    // Only generate random positions once we have window dimensions
+    if (windowSize.width && windowSize.height) {
+      const positions = [...Array(20)].map(() => ({
+        opacity: 0.1 + Math.random() * 0.3,
+        scale: 0.1 + Math.random() * 0.9,
+        x: Math.random() * windowSize.width,
+        y: Math.random() * windowSize.height,
+        width: 20 + Math.random() * 100,
+        height: 20 + Math.random() * 100,
+        duration: 15 + Math.random() * 30,
+      }));
+      setRandomPositions(positions);
+    }
+  }, [windowSize]);
+  
   return (
     <section className="relative h-screen w-full bg-gradient-to-br from-dark to-dark/70 overflow-hidden flex">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {randomPositions.map((props, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full bg-primary/10"
             initial={{
-              opacity: 0.1 + Math.random() * 0.3,
-              scale: 0.1 + Math.random() * 0.9,
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              opacity: props.opacity,
+              scale: props.scale,
+              x: props.x,
+              y: props.y,
             }}
             animate={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              x: Math.random() * windowSize.width,
+              y: Math.random() * windowSize.height,
               transition: {
-                duration: 15 + Math.random() * 30,
+                duration: props.duration,
                 repeat: Infinity,
                 repeatType: "reverse",
               },
             }}
             style={{
-              width: `${20 + Math.random() * 100}px`,
-              height: `${20 + Math.random() * 100}px`,
+              width: `${props.width}px`,
+              height: `${props.height}px`,
             }}
           />
         ))}
