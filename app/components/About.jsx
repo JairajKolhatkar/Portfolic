@@ -88,14 +88,14 @@ const About = () => {
           >
             <h3 className="text-2xl font-semibold text-light mb-4">My Journey</h3>
             <p className="text-gray-300 mb-6">
-              I graduated with a degree in Computer Science and Engineering from Prof Ram Meghe College of Engineering & Management, 
-              Amravati, India in June 2023. My passion for programming began during my college years, where I discovered the power of 
-              creating software that solves real-world problems.
+              I'm a Software Engineer with a passion for creating efficient, user-friendly applications that solve real-world problems.
+              My journey in tech began during my university years where I discovered my enthusiasm for coding and building digital solutions.
+              I've since developed expertise in both frontend and backend technologies, with a particular interest in data science and machine learning.
             </p>
             <p className="text-gray-300">
-              I enjoy the challenge of building clean, efficient, and scalable applications. Whether it's 
-              crafting user interfaces, designing database schemas, or implementing machine learning models, 
-              I approach each aspect with equal enthusiasm and attention to detail.
+              I enjoy tackling complex challenges and continuously expanding my skill set. Whether it's 
+              crafting elegant user interfaces, architecting scalable backend systems, or analyzing data for valuable insights, 
+              I approach each project with curiosity and dedication to deliver high-quality results.
             </p>
           </motion.div>
 
@@ -122,6 +122,64 @@ const About = () => {
             ))}
           </motion.div>
         </div>
+
+        {/* Education Section */}
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-16 bg-dark/30 backdrop-blur-sm rounded-xl p-8 border border-gray-800 shadow-xl"
+        >
+          <div className="flex items-center mb-6">
+            <FiAward size={28} className="text-primary mr-3" />
+            <h3 className="text-2xl font-semibold text-light">Education</h3>
+          </div>
+          
+          <div className="flex flex-col md:flex-row items-start gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, delay: 0.6 }}
+              className="bg-gradient-to-r from-primary/10 to-secondary/10 p-6 rounded-lg border border-primary/20 flex-1"
+            >
+              <h4 className="text-xl font-bold text-light mb-3">Bachelor of Technology in Computer Science</h4>
+              <p className="text-gray-300 mb-3">
+                Prof Ram Meghe College of Engineering & Management, Amravati, India
+              </p>
+              <p className="text-gray-300 mb-3">
+                During my studies, I focused on core computer science principles and specialized in data science
+                and machine learning. I completed coursework in algorithms, database systems, software engineering,
+                and artificial intelligence.
+              </p>
+              <div className="flex items-center">
+                <span className="text-primary font-medium text-sm mr-2">Graduation:</span>
+                <span className="text-gray-300 text-sm">June 2023</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, delay: 0.7 }}
+              className="bg-gradient-to-r from-secondary/10 to-primary/10 p-6 rounded-lg border border-secondary/20 flex-1"
+            >
+              <h4 className="text-xl font-bold text-light mb-3">Higher Secondary Education</h4>
+              <p className="text-gray-300 mb-3">
+                Golden Kids Junior College, Amravati
+              </p>
+              <p className="text-gray-300 mb-3">
+                My foundation in science and mathematics was established here, where I developed
+                analytical thinking and problem-solving skills that would later prove essential
+                in my computer science education.
+              </p>
+              <div className="flex items-center">
+                <span className="text-secondary font-medium text-sm mr-2">Graduation:</span>
+                <span className="text-gray-300 text-sm">2019</span>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Achievements Section */}
         <motion.div
