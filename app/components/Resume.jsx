@@ -66,7 +66,7 @@ const PDFViewer = ({ inView }) => {
 
   // Download resume function
   const downloadResume = () => {
-    window.open('/Jairaj Kolhatkar_Resume Python.pdf', '_blank');
+    window.open('/Jairaj Kolhatkar_Resume_Public.pdf', '_blank');
   };
 
   if (!pdfLoaded) {
@@ -173,7 +173,7 @@ const PDFViewer = ({ inView }) => {
         <div className="flex justify-center overflow-auto">
           {Document && Page ? (
             <Document
-              file="/Jairaj Kolhatkar_Resume Python.pdf"
+              file="/Jairaj Kolhatkar_Resume_Public.pdf"
               onLoadSuccess={onDocumentLoadSuccess}
               loading={
                 <div className="flex justify-center items-center h-[600px]">
