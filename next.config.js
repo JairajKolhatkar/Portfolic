@@ -27,7 +27,7 @@ const nextConfig = {
   },
   // For static export with Next.js 13
   trailingSlash: true,
-  basePath: '',
+  basePath: '/Portfolic', // Repository name - this is important for GitHub Pages
 };
 
 module.exports = nextConfig; 

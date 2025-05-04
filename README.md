@@ -71,6 +71,3 @@ This site can be easily deployed on Vercel:
 - Update resume PDF in the public folder
 - Customize colors in the tailwind.config.js file
 
-## License
-
-MIT 
