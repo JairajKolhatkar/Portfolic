@@ -34,13 +34,24 @@ jobs:
         run: |
           npm install
           npm install -D tailwindcss postcss autoprefixer
-          npx tailwindcss init -p
+          echo "module.exports = {plugins: {tailwindcss: {},autoprefixer: {}}}" > postcss.config.js
+          
+      - name: Debug Environment
+        run: |
+          echo "Node version:"
+          node --version
+          echo "NPM version:"
+          npm --version
+          echo "Installed packages:"
+          npm list --depth=0
+          echo "Directory structure:"
+          ls -la
         
       - name: Build
         run: |
-          npm run build
+          npm run build --verbose
           echo "Build completed, listing output files:"
-          ls -la ./out
+          ls -la ./out || echo "No out directory found"
           
       - name: Prepare for GitHub Pages
         run: |
