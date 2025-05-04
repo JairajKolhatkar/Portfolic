@@ -27,8 +27,27 @@ jobs:
       - name: Add .nojekyll file
         run: touch ./out/.nojekyll
         
+      - name: Configure GitHub Pages
+        run: |
+          echo "Adding root index.html for GitHub Pages redirects..."
+          cat > ./out/404.html <<EOL
+          <!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Redirecting to Jairaj's Portfolio</title>
+              <meta http-equiv="refresh" content="0; URL=https://jairajkolhatkar.github.io/Portfolic/">
+              <link rel="canonical" href="https://jairajkolhatkar.github.io/Portfolic/">
+            </head>
+            <body>
+              <p>If you are not redirected automatically, follow this <a href="https://jairajkolhatkar.github.io/Portfolic/">link to the portfolio</a>.</p>
+            </body>
+          </html>
+          EOL
+          
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out 
+          publish_dir: ./out
+          cname: jairajkolhatkar.github.io 
