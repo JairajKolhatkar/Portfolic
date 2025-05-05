@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next && next build",
+    "build:win": "rmdir /s /q .next && next build",
     "start": "next start",
     "lint": "next lint",
     "serve": "npx serve out",
@@ -12,21 +13,23 @@
     "simple-deploy": "node simple-deploy.js"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.5",
     "framer-motion": "^10.16.4",
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-intersection-observer": "^9.5.2",
-    "react-pdf": "^7.5.1"
+    "react-pdf": "^9.2.1"
   },
   "devDependencies": {
-    "autoprefixer": "latest",
+    "autoprefixer": "10.4.16",
     "eslint": "^8.53.0",
     "eslint-config-next": "^13.4.19",
     "null-loader": "^4.0.1",
-    "postcss": "latest",
+    "postcss": "8.4.31",
     "serve": "^14.2.1",
-    "tailwindcss": "latest"
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "latest"
   }
 }
