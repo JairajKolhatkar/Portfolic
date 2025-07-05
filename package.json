@@ -4,9 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "rm -rf .next && next build",
+    "build:win": "rmdir /s /q .next && next build",
+    "start": "next dev",
+    "lint": "next lint",
+    "serve": "npx serve out",
+    "deploy": "node deploy.js",
+    "simple-deploy": "node simple-deploy.js"
   },
   "dependencies": {
     "framer-motion": "^10.16.4",

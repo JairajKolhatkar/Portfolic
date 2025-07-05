@@ -51,7 +51,7 @@ yarn install
 
 4. Start the development server
 ```bash
-npm run dev
+npm run start
 # or
 yarn dev
 ```
