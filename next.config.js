@@ -4,7 +4,7 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   images: {
-    domains: ['via.placeholder.com'],
+    domains: ['via.placeholder.com', 'images.unsplash.com'],
     unoptimized: true,
   },
   webpack: (config, { isServer }) => {
