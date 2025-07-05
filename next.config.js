@@ -27,8 +27,8 @@ const nextConfig = {
   },
   // For static export with Next.js 13
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolic' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolic/' : '',
+  basePath: '',
+  assetPrefix: '',
 };
 
 module.exports = nextConfig; 
