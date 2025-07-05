@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiDownload, FiPlus, FiMinus, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import SimpleResumeViewer from './SimpleResumeViewer';
 
 // PDFViewer component (will only be used on client side)
 const PDFViewer = ({ inView }) => {
@@ -24,8 +25,9 @@ const PDFViewer = ({ inView }) => {
       import('react-pdf').then((reactPdf) => {
         const { Document: Doc, Page: Pg, pdfjs } = reactPdf;
         
-        // Configure worker
-        pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+        // Configure worker with multiple fallbacks
+        pdfjs.GlobalWorkerOptions.workerSrc = 
+          `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
         
         // Set components
         setDocument(() => Doc);
@@ -66,7 +68,7 @@ const PDFViewer = ({ inView }) => {
 
   // Download resume function
   const downloadResume = () => {
-    window.open('/Jairaj Kolhatkar_Resume_Public.pdf', '_blank');
+    window.open('/Jairaj_Kolhatkar_Resume_Python.pdf', '_blank');
   };
 
   if (!pdfLoaded) {
@@ -173,18 +175,30 @@ const PDFViewer = ({ inView }) => {
         <div className="flex justify-center overflow-auto">
           {Document && Page ? (
             <Document
-              file="/Jairaj Kolhatkar_Resume_Public.pdf"
+              file="/Jairaj_Kolhatkar_Resume_Python.pdf"
               onLoadSuccess={onDocumentLoadSuccess}
+              onLoadError={(error) => {
+                console.error('PDF Load Error:', error);
+              }}
+              options={{
+                cMapUrl: 'https://unpkg.com/pdfjs-dist@2.16.105/cmaps/',
+                cMapPacked: true,
+                standardFontDataUrl: 'https://unpkg.com/pdfjs-dist@2.16.105/standard_fonts/',
+              }}
               loading={
                 <div className="flex justify-center items-center h-[600px]">
                   <div className="animate-pulse text-primary">Loading resume...</div>
                 </div>
               }
               error={
-                <div className="flex justify-center items-center h-[600px] text-center">
-                  <div className="text-red-500">
+                <div className="flex flex-col justify-center items-center h-[600px] text-center">
+                  <div className="text-red-500 mb-6">
                     <p className="mb-2">Failed to load the resume.</p>
                     <p>Please download it using the button above.</p>
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    <p>The PDF viewer may not be compatible with this file format.</p>
+                    <p>Direct download will work perfectly.</p>
                   </div>
                 </div>
               }
@@ -246,13 +260,17 @@ const Resume = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           {isClient ? (
-            <PDFViewer inView={inView} />
+            <SimpleResumeViewer />
           ) : (
             <div className="flex justify-center mb-8">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex items-center space-x-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                onClick={() => {
+                  const basePath = process.env.NODE_ENV === 'production' ? '/Portfolic' : '';
+                  window.open(`${basePath}/Jairaj_Kolhatkar_Resume_Python.pdf`, '_blank');
+                }}
               >
                 <FiDownload size={18} />
                 <span>Download Resume</span>

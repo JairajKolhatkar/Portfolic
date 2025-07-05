@@ -91,7 +91,7 @@ const Hero = () => {
   }, [windowSize]);
   
   return (
-    <section className="relative h-screen w-full bg-gradient-to-br from-dark to-dark/70 overflow-hidden flex">
+    <section className="relative h-screen w-full bg-gradient-to-br from-dark to-dark/70 overflow-hidden flex" style={{ zIndex: 1 }}>
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         {randomPositions.map((props, i) => (

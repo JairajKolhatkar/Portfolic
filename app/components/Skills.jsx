@@ -14,43 +14,43 @@ const Skills = () => {
   
   const categories = [
     { id: 'languages', label: 'Programming Languages' },
-    { id: 'data', label: 'Data Technologies' },
-    { id: 'tools', label: 'Development Tools' },
-    { id: 'ml', label: 'Machine Learning & AI' },
+    { id: 'frontend', label: 'Frontend Technologies' },
+    { id: 'backend', label: 'Backend & Database' },
+    { id: 'tools', label: 'Tools & Technologies' },
   ];
   
   const skills = {
     languages: [
       { name: 'Python', level: 90 },
+      { name: 'JavaScript', level: 85 },
       { name: 'Java', level: 85 },
-      { name: 'JavaScript', level: 80 },
-      { name: 'SQL', level: 85 },
-      { name: 'HTML', level: 85 },
-      { name: 'CSS', level: 85 },
+      { name: 'TypeScript', level: 80 },
+      { name: 'HTML5', level: 90 },
+      { name: 'CSS3', level: 85 },
     ],
-    data: [
-      { name: 'MySQL', level: 85 },
+    frontend: [
+      { name: 'React', level: 85 },
+      { name: 'Next.js', level: 80 },
+      { name: 'Tailwind CSS', level: 85 },
+      { name: 'Framer Motion', level: 75 },
+      { name: 'Responsive Design', level: 90 },
+      { name: 'Modern UI/UX', level: 80 },
+    ],
+    backend: [
+      { name: 'Node.js', level: 80 },
+      { name: 'Express.js', level: 75 },
+      { name: 'Flask', level: 80 },
       { name: 'MongoDB', level: 75 },
-      { name: 'SQL Lite', level: 75 },
-      { name: 'Data Modeling', level: 80 },
-      { name: 'ETL Processes', level: 75 },
-      { name: 'Streamlit', level: 80 },
+      { name: 'MySQL', level: 85 },
+      { name: 'SQLite', level: 80 },
     ],
     tools: [
       { name: 'Git/GitHub', level: 90 },
-      { name: 'VS Code', level: 85 },
-      { name: 'Eclipse', level: 80 },
-      { name: 'Node.js', level: 75 },
-      { name: 'RESTful APIs', level: 80 },
-      { name: 'Web Development', level: 85 },
-    ],
-    ml: [
-      { name: 'Classification', level: 85 },
-      { name: 'Regression', level: 85 },
-      { name: 'NLP/NLTK', level: 80 },
-      { name: 'NumPy/Pandas', level: 85 },
-      { name: 'Keras', level: 75 },
-      { name: 'Data Visualization', level: 80 },
+      { name: 'RESTful APIs', level: 85 },
+      { name: 'Machine Learning', level: 80 },
+      { name: 'Data Analysis', level: 75 },
+      { name: 'Authentication Systems', level: 80 },
+      { name: 'Web Scraping', level: 75 },
     ],
   };
   
@@ -146,10 +146,10 @@ const Skills = () => {
           className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center"
         >
           {[
-            { label: 'Years Experience', value: '1+' },
-            { label: 'Projects Completed', value: '10+' },
-            { label: 'ML Models Trained', value: '5+' },
-            { label: 'Technologies', value: '15+' },
+            { label: 'Years Experience', value: '2+' },
+            { label: 'Projects Completed', value: '12+' },
+            { label: 'Technologies Used', value: '20+' },
+            { label: 'GitHub Repositories', value: '16+' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
