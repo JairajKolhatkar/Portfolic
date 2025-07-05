@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
+  // Only use static export for local builds, not for Vercel
+  output: process.env.VERCEL ? undefined : 'export',
   images: {
     domains: ['via.placeholder.com', 'images.unsplash.com'],
     unoptimized: true,
