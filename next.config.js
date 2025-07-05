@@ -18,12 +18,6 @@ const nextConfig = {
       };
     }
     
-    // Add a rule to handle binary files
-    config.module.rules.push({
-      test: /node_modules\/canvas/,
-      use: 'null-loader',
-    });
-    
     return config;
   },
   // For static export with Next.js 13
